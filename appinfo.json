@@ -1,0 +1,24 @@
+{
+    "appKeys": {},
+    "capabilities": [
+        ""
+    ],
+    "companyName": "chrisfrost.com",
+    "enableMultiJS": true,
+    "longName": "Octant",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "Octant",
+    "targetPlatforms": [
+        "basalt",
+        "chalk"
+    ],
+    "uuid": "7ea01375-429b-484d-aca4-8061a5ee685f",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
+}
