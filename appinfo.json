@@ -8,7 +8,17 @@
     "longName": "Octant",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "fonts/SourceSansPro-Light.ttf",
+                "name": "FONT_SOURCE_SANS_PRO_LIGHT_48",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "Octant",
