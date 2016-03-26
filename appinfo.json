@@ -1,7 +1,7 @@
 {
     "appKeys": {},
     "capabilities": [
-        ""
+        "configurable"
     ],
     "companyName": "chrisfrost.com",
     "enableMultiJS": true,
