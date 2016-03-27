@@ -1,22 +1,36 @@
 #include <pebble.h>
   
 static Window *s_main_window;
+static Window *s_phone_window;
 static TextLayer *s_time_layer;
 static TextLayer *s_date_layer;
-static GFont s_time_font, s_date_font;
+static TextLayer *s_battery_layer;
+static TextLayer *s_connection_layer;
+static TextLayer *s_phone_layer;
+static GFont s_time_font, s_date_font, s_phone_font;
 
-static void update_time() {
-  // Get a tm structure
-  time_t temp = time(NULL);
-  struct tm *tick_time = localtime(&temp);
+// Handlers
 
-  // Write the current hours and minutes into a buffer
+static void handle_battery(BatteryChargeState charge_state) {
+  static char battery_text[] = "100% charged";
+
+  if (charge_state.is_charging) {
+    snprintf(battery_text, sizeof(battery_text), "charging");
+  } else {
+    snprintf(battery_text, sizeof(battery_text), "%d%% charged", charge_state.charge_percent);
+  }
+  text_layer_set_text(s_battery_layer, battery_text);
+}
+
+static void handle_bluetooth(bool connected) {
+  text_layer_set_text(s_connection_layer, connected ? "connected" : "disconnected");
+}
+
+static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
   static char s_time_buffer[8];
   strftime(s_time_buffer, sizeof(s_time_buffer), clock_is_24h_style() ? "%H:%M" : "%I:%M%P", tick_time);
 
-  // Write the current date into a buffer
   static char s_date_buffer[13];
-  
   static char template[] = "%a %d-- %b";
   
   switch ((*tick_time).tm_mday) {
@@ -32,79 +46,136 @@ static void update_time() {
         
   strftime(s_date_buffer, sizeof(s_date_buffer), template, tick_time);
   
-  // Display this time on the TextLayer
   text_layer_set_text(s_time_layer, s_time_buffer);
   text_layer_set_text(s_date_layer, s_date_buffer);
 }
 
-static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
-  update_time();
+static void handle_tap(AccelAxisType axis, int32_t direction) {
+  printf("BANG BANG TAP");
+  window_stack_push(s_phone_window, true);
+  psleep(4000);
+  window_stack_pop(true);
 }
 
+// Setup Phone Window
+
+static void phone_window_load(Window *window) {
+  Layer *window_layer = window_get_root_layer(window);
+  GRect bounds = layer_get_bounds(window_layer);
+  
+  s_phone_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_40));
+
+  s_phone_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 0), bounds.size.w, 50));
+  text_layer_set_background_color(s_phone_layer, GColorClear);
+  text_layer_set_text_color(s_phone_layer, GColorWhite);
+  text_layer_set_font(s_phone_layer, s_phone_font);
+  text_layer_set_text_alignment(s_phone_layer, GTextAlignmentCenter);
+  text_layer_set_text(s_phone_layer, "BOOM");
+  layer_add_child(window_layer, text_layer_get_layer(s_phone_layer)); 
+}
+
+static void phone_window_unload(Window *window) {
+  text_layer_destroy(s_phone_layer);
+  fonts_unload_custom_font(s_phone_font);
+}
+
+// Setup Main Window
+
 static void main_window_load(Window *window) {
-  // Get information about the Window
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
   
   //Chalk, round - 180 x 180
   //Basalt, rectangular - 144 x 168
   
-  // Create the TextLayer with specific bounds
-  s_time_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 0), bounds.size.w, 50));
-  s_date_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(60, 50), bounds.size.w, 25));
-
-  // Create GFont
   s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_40));
   s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_22));
   
-  // Improve the layout to be more like a watchface
+  s_time_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 0), bounds.size.w, 50));
   text_layer_set_background_color(s_time_layer, GColorClear);
-  text_layer_set_background_color(s_date_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorWhite);
-  text_layer_set_text_color(s_date_layer, GColorWhite);
   text_layer_set_font(s_time_layer, s_time_font);
-  text_layer_set_font(s_date_layer, s_date_font);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
-  text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
-
-  // Add it as a child layer to the Window's root layer
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
+  
+  s_date_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(60, 50), bounds.size.w, 25));
+  text_layer_set_background_color(s_date_layer, GColorClear);
+  text_layer_set_text_color(s_date_layer, GColorWhite);
+  text_layer_set_font(s_date_layer, s_date_font);
+  text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
   layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
+  
+  s_connection_layer = text_layer_create(GRect(0, 90, bounds.size.w, 34));
+  text_layer_set_text_color(s_connection_layer, GColorWhite);
+  text_layer_set_background_color(s_connection_layer, GColorClear);
+  text_layer_set_font(s_connection_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
+  text_layer_set_text_alignment(s_connection_layer, GTextAlignmentCenter);
+  layer_add_child(window_layer, text_layer_get_layer(s_connection_layer));
+  
+  s_battery_layer = text_layer_create(GRect(0, 120, bounds.size.w, 34));
+  text_layer_set_text_color(s_battery_layer, GColorWhite);
+  text_layer_set_background_color(s_battery_layer, GColorClear);
+  text_layer_set_font(s_battery_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
+  text_layer_set_text_alignment(s_battery_layer, GTextAlignmentCenter);
+  layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));
 }
 
 static void main_window_unload(Window *window) {
-  // Destroy TextLayers & GFont
   text_layer_destroy(s_time_layer);
   text_layer_destroy(s_date_layer);
+  text_layer_destroy(s_connection_layer);
+  text_layer_destroy(s_battery_layer);
   fonts_unload_custom_font(s_time_font);
   fonts_unload_custom_font(s_date_font);
 }
 
+// Watchface setup
+
 static void init() {
-  // Create main Window element and assign to pointer
   s_main_window = window_create();
 
-  // Set handlers to manage the elements inside the Window
   window_set_window_handlers(s_main_window, (WindowHandlers) {
     .load = main_window_load,
     .unload = main_window_unload
   });
   
   window_set_background_color(s_main_window, GColorBlack);
-
-  // Show the Window on the watch, with animated=true
   window_stack_push(s_main_window, true);
 
-  // Make sure the time is displayed from the start
-  update_time();
+  // Setup initial values
+  time_t now = time(NULL);
+  struct tm *current_time = localtime(&now);
   
-  // Register with TickTimerService
-  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+  handle_tick(current_time, MINUTE_UNIT);
+  handle_battery(battery_state_service_peek());
+  handle_bluetooth(connection_service_peek_pebble_app_connection());
+  
+  // Register Services  
+  tick_timer_service_subscribe(MINUTE_UNIT, handle_tick);
+  battery_state_service_subscribe(handle_battery);
+  connection_service_subscribe((ConnectionHandlers) {
+    .pebble_app_connection_handler = handle_bluetooth
+  });
+  accel_tap_service_subscribe(handle_tap);
+    
+  // Setup phone window
+  s_phone_window = window_create();
+
+  window_set_window_handlers(s_phone_window, (WindowHandlers) {
+    .load = phone_window_load,
+    .unload = phone_window_unload
+  });
+
+  window_set_background_color(s_phone_window, GColorBlack); 
+  
+  window_stack_push(s_phone_window, true);
+  psleep(4000);
+  window_stack_pop(true);
 }
 
 static void deinit() {
-  // Destroy Window
   window_destroy(s_main_window);
+  window_destroy(s_phone_window);
 }
 
 int main(void) {
