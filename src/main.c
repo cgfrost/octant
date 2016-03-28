@@ -169,7 +169,7 @@ static void init() {
   window_set_background_color(s_phone_window, GColorBlack); 
   
   window_stack_push(s_phone_window, true);
-  psleep(4000);
+//   psleep(4000);
   window_stack_pop(true);
 }
 
