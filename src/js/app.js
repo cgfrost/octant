@@ -25,65 +25,29 @@ Pebble.addEventListener('webviewclosed', function(e) {
 Pebble.addEventListener('showConfiguration', function() {
   console.log('Show Configuration!');
   Pebble.openURL("data:text/html," +   
-  "<!DOCTYPE html>" +
-"<html>" +
-  "<head>" +
-  "<title>Slate Example Configuration</title>" +
-  "</head>" +
+  "<!DOCTYPE html><html>" +
+  "<head><title>Octant Configuration</title></head>" +
   "<body>" +
-    "<h1 class='title'>Slate Example Configuration</h1>" +
-    "<div class='item-container'>" +
-      "<div class='item-container-content'>" +
-        "<div class='item'>" +
-          "Use this configuration page to choose the settings you would like applied to this app." +
-        "</div>" +
-      "</div>" +
-    "</div>" +
-
-    "<div class='item-container'>" +
-      "<div class='item-container-header'>Customizability</div>" +
-      "<div class='item-container-content'>" +
-        "<label class='item'>" +
-          "Background Color" +
-          "<input id='background_color_picker' type='text' class='item-color item-color-sunny' value='#000000'>" +
-        "</label>" +
-      "</div>" +
-      "<div class='item-container-footer'>" +
-        "Choose the app's background color. Used if High Contrast Mode is not selected. Note: Only available on Basalt watches that support many colors." +
-      "</div>" +
-    "</div>" +
-    "<div class='item-container'>" +
-      "<div class='item-container-header'>Accessibility</div>" +
-      "<div class='item-container-content'>" +
-        "<label class='item'>" +
-          "High Contrast Mode" +
-          "<input id='high_contrast_checkbox' type='checkbox' class='item-toggle'>" +
-        "</label>" +
-      "</div>" +
-      "<div class='item-container-footer'>" +
-        "This switches the app colors to a higher contrast set that promotes readability in low light." +
-      "</div>" +
-    "</div>" +
-    "<div class='item-container'>" +
-      "<div class='button-container'>" +
-        "<input id='submit_button' type='button' class='item-button' value='SAVE'>" +
-      "</div>" +
-    "</div>" +
-  "</body>" +
+    "<h1 class='title'>Octant Configuration</h1>" +
+      "<input id='vibrate_on_disconnect_checkbox' type='checkbox'>" +
+        "Vibrate on disconnect" +
+      "</input>" +     
+      "<input id='submit_button' type='button' value='Save'>" +
+    "</body>" +
   "<script>" +
   "function getConfigData() {" +
-    "var backgroundColorPicker = document.getElementById('background_color_picker');" +
-    "var highContrastCheckbox = document.getElementById('high_contrast_checkbox');" +
+    "var vibrateOnDisconnectCheckbox = document.getElementById('vibrate_on_disconnect_checkbox');" +
     "var options = {" +
-      "'background_color': backgroundColorPicker.value," +
-      "'high_contrast': highContrastCheckbox.checked" +
+      "'vibrate_on_disconnect_checkbox': vibrateOnDisconnectCheckbox.value," +
     "};" +
-    "// Save for next launch" +
-    "localStorage['background_color'] = options['background_color'];" +
-    "localStorage['high_contrast'] = options['high_contrast'];" +
+    "localStorage['vibrate_on_disconnect_checkbox'] = options['vibrate_on_disconnect_checkbox'];" +      
     "console.log('Got options: ' + JSON.stringify(options));" +
     "return options;" +
   "}" +
+                 
+                 
+                 
+                 
   "function getQueryParam(variable, defaultValue) {" +
     "var query = location.search.substring(1);" +
     "var vars = query.split('&');" +
@@ -111,6 +75,10 @@ Pebble.addEventListener('showConfiguration', function() {
       "backgroundColorPicker.value = localStorage['background_color'];" +
     "}" +
   "})();" +
+                 
+                 
+                 
+                 
   "</script>" +
 "</html><!--.html");
   

@@ -1,5 +1,7 @@
 {
-    "appKeys": {},
+    "appKeys": {
+        "VIBRATE_ON_DISCONNECT": 0
+    },
     "capabilities": [
         "configurable"
     ],
