@@ -2,21 +2,21 @@
 #include "main_window.h"
 #include "phone_window.h"
 
+static void handle_timer(void* data) {
+  window_stack_pop(true);
+}
+
 static void handle_tap(AccelAxisType axis, int32_t direction) {
   printf("BANG BANG TAP");
   phone_window_push();
-  psleep(4000);
-  window_stack_pop(true);
+  app_timer_register(4000, handle_timer, NULL);
 }
 
 // Watchface setup
 
 static void init() {
   main_window_init();
-  phone_window_init();
-  
-  phone_window_push();
-  
+  phone_window_init();  
   accel_tap_service_subscribe(handle_tap);
 }
 

@@ -29,9 +29,7 @@ Pebble.addEventListener('showConfiguration', function() {
   "<head><title>Octant Configuration</title></head>" +
   "<body>" +
     "<h1 class='title'>Octant Configuration</h1>" +
-      "<input id='vibrate_on_disconnect_checkbox' type='checkbox'>" +
-        "Vibrate on disconnect" +
-      "</input>" +     
+      "<input id='vibrate_on_disconnect_checkbox' type='checkbox'>Vibrate on disconnect</input>" +     
       "<input id='submit_button' type='button' value='Save'>" +
     "</body>" +
   "<script>" +
@@ -44,43 +42,19 @@ Pebble.addEventListener('showConfiguration', function() {
     "console.log('Got options: ' + JSON.stringify(options));" +
     "return options;" +
   "}" +
-                 
-                 
-                 
-                 
-  "function getQueryParam(variable, defaultValue) {" +
-    "var query = location.search.substring(1);" +
-    "var vars = query.split('&');" +
-    "for (var i = 0; i < vars.length; i++) {" +
-      "var pair = vars[i].split('=');" +
-      "if (pair[0] === variable) {" +
-        "return decodeURIComponent(pair[1]);" +
-      "}" +
-    "}" +
-    "return defaultValue || false;" +
-  "}" +
   "var submitButton = document.getElementById('submit_button');" +
   "submitButton.addEventListener('click', function() {" +
-    "console.log('Submit');" +
-    "// Set the return URL depending on the runtime environment" +
-    "var return_to = getQueryParam('return_to', 'pebblejs://close#');" +
-    "document.location = return_to + encodeURIComponent(JSON.stringify(getConfigData()));" +
+    "console.log('Submit ' + encodeURIComponent(JSON.stringify(getConfigData()));" +
+    "document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(getConfigData()));" +
   "});" +
   "(function() {" +
-    "var backgroundColorPicker = document.getElementById('background_color_picker');" +
-    "var highContrastCheckbox = document.getElementById('high_contrast_checkbox');" +
+    "var vibrateOnDisconnectCheckbox = document.getElementById('vibrate_on_disconnect_checkbox');" +
     "// Load any previously saved configuration, if available" +
-    "if(localStorage['high_contrast']) {" +
-      "highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);" +
-      "backgroundColorPicker.value = localStorage['background_color'];" +
+    "if(localStorage['vibrate_on_disconnect_checkbox']) {" +
+      "vibrateOnDisconnectCheckbox.checked = JSON.parse(localStorage['vibrate_on_disconnect_checkbox']);" +
     "}" +
-  "})();" +
-                 
-                 
-                 
-                 
+  "})();" +        
   "</script>" +
 "</html><!--.html");
-  
 });
 
