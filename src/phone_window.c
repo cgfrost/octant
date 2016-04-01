@@ -18,7 +18,7 @@ static void phone_window_load(Window *window) {
   text_layer_set_text_color(s_phone_layer, GColorWhite);
   text_layer_set_font(s_phone_layer, s_phone_font);
   text_layer_set_text_alignment(s_phone_layer, GTextAlignmentCenter);
-  text_layer_set_text(s_phone_layer, "BOOM");
+  text_layer_set_text(s_phone_layer, "Jolla");
   layer_add_child(window_layer, text_layer_get_layer(s_phone_layer)); 
 }
 

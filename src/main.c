@@ -13,7 +13,7 @@ static void handle_tap(AccelAxisType axis, int32_t direction) {
   if(!on_phone_screen){
     on_phone_screen = true;
     phone_window_push();
-    app_timer_register(4000, handle_timer, NULL);
+    app_timer_register(3500, handle_timer, NULL);
   }
 }
 
