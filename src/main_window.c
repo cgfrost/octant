@@ -30,7 +30,7 @@ static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
   strftime(s_time_buffer, sizeof(s_time_buffer), clock_is_24h_style() ? "%H:%M" : "%I:%M%P", tick_time);
 
   static char s_date_buffer[13];
-  static char template[] = "%a %d-- %b";
+  static char template[] = "%a %e-- %b";
   
   switch ((*tick_time).tm_mday) {
     case 1: template[5] = 's'; template[6] = 't'; break;
