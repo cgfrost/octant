@@ -1,5 +1,10 @@
 {
     "appKeys": {
+        "DEVICE_BATTERY_LEVEL": 5,
+        "DEVICE_CELL_LEVEL": 3,
+        "DEVICE_CELL_NAME": 4,
+        "DEVICE_WIFI_LEVEL": 1,
+        "DEVICE_WIFI_NAME": 2,
         "VIBRATE_ON_DISCONNECT": 0
     },
     "capabilities": [
@@ -37,7 +42,7 @@
         "basalt",
         "chalk"
     ],
-    "uuid": "7ea01375-429b-484d-aca4-8061a5ee685f",
+    "uuid": "632ef1f6-5a1d-4802-8dde-2df99c2d8899",
     "versionLabel": "1.0",
     "watchapp": {
         "watchface": true
