@@ -2,11 +2,12 @@
 #include "main_window.h"
 
 static Window *s_main_window;
+static TextLayer *s_temp_layer;
 static TextLayer *s_time_layer;
 static TextLayer *s_date_layer;
 static TextLayer *s_battery_layer;
 static TextLayer *s_connection_layer;
-static GFont s_time_font, s_date_font;
+static GFont s_big_font, s_medium_font, s_small_font;
 
 // Handlers
 
@@ -49,6 +50,17 @@ static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
   text_layer_set_text(s_date_layer, s_date_buffer);
 }
 
+// Helper
+
+static TextLayer* build_text_layer(GFont font, GRect frame) {
+  s_temp_layer = text_layer_create(frame);
+  text_layer_set_background_color(s_temp_layer, GColorClear);
+  text_layer_set_text_color(s_temp_layer, GColorWhite);
+  text_layer_set_font(s_temp_layer, font);
+  text_layer_set_text_alignment(s_temp_layer, GTextAlignmentCenter);
+  return s_temp_layer;
+}
+
 // Setup Main Window
 
 static void main_window_load(Window *window) {
@@ -58,45 +70,32 @@ static void main_window_load(Window *window) {
   //Chalk, round - 180 x 180
   //Basalt, rectangular - 144 x 168
   
-  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_40));
-  s_date_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_22));
+  s_big_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_45));
+  s_medium_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_25));
+  s_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_15));
   
-  s_time_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 0), bounds.size.w, 50));
-  text_layer_set_background_color(s_time_layer, GColorClear);
-  text_layer_set_text_color(s_time_layer, GColorWhite);
-  text_layer_set_font(s_time_layer, s_time_font);
-  text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
+  s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(16, 10), bounds.size.w, 50));
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
   
-  s_date_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(60, 50), bounds.size.w, 25));
-  text_layer_set_background_color(s_date_layer, GColorClear);
-  text_layer_set_text_color(s_date_layer, GColorWhite);
-  text_layer_set_font(s_date_layer, s_date_font);
-  text_layer_set_text_alignment(s_date_layer, GTextAlignmentCenter);
+  s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(75, 69), bounds.size.w, 30));
   layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
   
-  s_connection_layer = text_layer_create(GRect(0, 90, bounds.size.w, 34));
-  text_layer_set_text_color(s_connection_layer, GColorWhite);
-  text_layer_set_background_color(s_connection_layer, GColorClear);
-  text_layer_set_font(s_connection_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
-  text_layer_set_text_alignment(s_connection_layer, GTextAlignmentCenter);
+  s_connection_layer = build_text_layer(s_small_font, GRect(0, 105, bounds.size.w, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_connection_layer));
   
-  s_battery_layer = text_layer_create(GRect(0, 120, bounds.size.w, 34));
-  text_layer_set_text_color(s_battery_layer, GColorWhite);
-  text_layer_set_background_color(s_battery_layer, GColorClear);
-  text_layer_set_font(s_battery_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18));
-  text_layer_set_text_alignment(s_battery_layer, GTextAlignmentCenter);
+  s_battery_layer = build_text_layer(s_small_font, GRect(0, 125, bounds.size.w, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));  
 }
 
 static void main_window_unload(Window *window) {
+  text_layer_destroy(s_temp_layer);
   text_layer_destroy(s_time_layer);
   text_layer_destroy(s_date_layer);
   text_layer_destroy(s_connection_layer);
   text_layer_destroy(s_battery_layer);
-  fonts_unload_custom_font(s_time_font);
-  fonts_unload_custom_font(s_date_font);
+  fonts_unload_custom_font(s_big_font);
+  fonts_unload_custom_font(s_medium_font);
+  fonts_unload_custom_font(s_small_font);
 }
 
 void main_window_init() {

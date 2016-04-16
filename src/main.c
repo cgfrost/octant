@@ -2,6 +2,8 @@
 #include "main_window.h"
 #include "phone_window.h"
 
+// MESSAGING
+
 enum WeatherKey {
   VIBRATE_ON_DISCONNECT = 0x0,  // TUPLE_INT
   DEVICE_WIFI_LEVEL = 0x1,      // TUPLE_CSTRING
@@ -16,15 +18,27 @@ const uint32_t inbox_size = 54;
 const uint32_t outbox_size = 256;
 
 // Open AppMessage
-app_message_open(inbox_size, outbox_size);
+// app_message_open(inbox_size, outbox_size);
 
 static void inbox_received_callback(DictionaryIterator *iter, void *context) {
   // A new message has been successfully received
-
 }
 
+static void inbox_dropped_callback(AppMessageResult reason, void *context) {
+  // A message was received, but had to be dropped
+  APP_LOG(APP_LOG_LEVEL_ERROR, "Message dropped. Reason: %d", (int)reason);
+}
 
+static void outbox_sent_callback(DictionaryIterator *iter, void *context) {
+  // The message just sent has been successfully delivered
+}
 
+static void outbox_failed_callback(DictionaryIterator *iter, AppMessageResult reason, void *context) {
+  // The message just sent failed to be delivered
+  APP_LOG(APP_LOG_LEVEL_ERROR, "Message send failed. Reason: %d", (int)reason);
+}
+
+// TAPPING
 
 static bool on_phone_screen = false;
 
@@ -41,12 +55,22 @@ static void handle_tap(AccelAxisType axis, int32_t direction) {
   }
 }
 
+// LIFECYCLE
+
 static void init() {
   main_window_init();
   phone_window_init();  
   
   app_message_register_inbox_received(inbox_received_callback);
+  app_message_register_inbox_dropped(inbox_dropped_callback);
+  app_message_register_outbox_sent(outbox_sent_callback);
+  app_message_register_outbox_failed(outbox_failed_callback);
   accel_tap_service_subscribe(handle_tap);
+  
+  
+    on_phone_screen = true;
+    phone_window_push();
+    app_timer_register(3500, handle_timer, NULL);
 }
 
 static void deinit() {

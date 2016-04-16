@@ -17,8 +17,89 @@
     "resources": {
         "media": [
             {
+                "file": "fonts/SourceSansPro-Regular.ttf",
+                "name": "FONT_SOURCE_SANS_PRO_REGULAR_15",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
+            },
+            {
+                "file": "fonts/SourceSansPro-Regular.ttf",
+                "name": "FONT_SOURCE_SANS_PRO_REGULAR_25",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
+            },
+            {
+                "file": "fonts/SourceSansPro-Regular.ttf",
+                "name": "FONT_SOURCE_SANS_PRO_REGULAR_45",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
+            },
+            {
+                "file": "images/icon-status-battery-warning.png",
+                "name": "ICON_STATUS_WARNING",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/icon-status-battery.png",
+                "name": "ICON_STATUS_BATTERY",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/icon-status-charge.png",
+                "name": "ICON_STATUS_CHARGE",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/icon-status-bluetooth-connected.png",
+                "name": "ICON_STATUS_BLUETOOTH_CONNECTED",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/icon-status-bluetooth.png",
+                "name": "ICON_STATUS_BLUETOOTH",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/icon-m-jolla.png",
+                "name": "ICON_M_JOLLA",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
                 "file": "fonts/SourceSansPro-Light.ttf",
-                "name": "FONT_SOURCE_SANS_PRO_LIGHT_40",
+                "name": "FONT_SOURCE_SANS_PRO_LIGHT_15",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"
@@ -27,7 +108,16 @@
             },
             {
                 "file": "fonts/SourceSansPro-Light.ttf",
-                "name": "FONT_SOURCE_SANS_PRO_LIGHT_22",
+                "name": "FONT_SOURCE_SANS_PRO_LIGHT_25",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "font"
+            },
+            {
+                "file": "fonts/SourceSansPro-Light.ttf",
+                "name": "FONT_SOURCE_SANS_PRO_LIGHT_45",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"
