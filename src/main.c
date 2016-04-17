@@ -66,11 +66,10 @@ static void init() {
   app_message_register_outbox_sent(outbox_sent_callback);
   app_message_register_outbox_failed(outbox_failed_callback);
   accel_tap_service_subscribe(handle_tap);
-  
-  
-    on_phone_screen = true;
-    phone_window_push();
-    app_timer_register(3500, handle_timer, NULL);
+    
+//     on_phone_screen = true;
+//     phone_window_push();
+//     app_timer_register(3500, handle_timer, NULL);
 }
 
 static void deinit() {

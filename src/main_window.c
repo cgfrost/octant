@@ -2,14 +2,9 @@
 #include "main_window.h"
 
 static Window *s_main_window;
-static TextLayer *s_temp_layer;
-static TextLayer *s_time_layer;
-static TextLayer *s_date_layer;
-static TextLayer *s_battery_layer;
-static TextLayer *s_bluetooth_layer;
-static GFont s_big_font, s_medium_font, s_small_font;
-
+static TextLayer *s_temp_layer, *s_time_layer, *s_date_layer, *s_battery_layer;
 static BitmapLayer *s_battery_image_layer, *s_bluetooth_image_layer;
+static GFont s_big_font, s_medium_font, s_small_font;
 static GBitmap *s_bluetooth_bitmap, *s_bluetooth_connected_bitmap, *s_charge_bitmap, *s_battery_bitmap, *s_battery_warning_bitmap;
 
 // Handlers
@@ -18,15 +13,25 @@ static void handle_battery(BatteryChargeState charge_state) {
   static char battery_text[] = "100% charged";
 
   if (charge_state.is_charging) {
-    snprintf(battery_text, sizeof(battery_text), "charging");
+    snprintf(battery_text, sizeof(battery_text), "----");
+    bitmap_layer_set_bitmap(s_battery_image_layer, s_charge_bitmap);
   } else {
-    snprintf(battery_text, sizeof(battery_text), "%d%% charged", charge_state.charge_percent);
+    snprintf(battery_text, sizeof(battery_text), "%d%%", charge_state.charge_percent);
+    if(charge_state.charge_percent <= 10) {
+      bitmap_layer_set_bitmap(s_battery_image_layer, s_battery_warning_bitmap);
+    } else {
+      bitmap_layer_set_bitmap(s_battery_image_layer, s_battery_bitmap);
+    }
   }
   text_layer_set_text(s_battery_layer, battery_text);
 }
 
 static void handle_bluetooth(bool connected) {
-  text_layer_set_text(s_bluetooth_layer, connected ? "connected" : "disconnected");
+  if(connected) {
+      bitmap_layer_set_bitmap(s_bluetooth_image_layer, s_bluetooth_connected_bitmap);
+  } else {
+      bitmap_layer_set_bitmap(s_bluetooth_image_layer, s_bluetooth_bitmap);
+  }
 }
 
 static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
@@ -48,7 +53,6 @@ static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
   }
         
   strftime(s_date_buffer, sizeof(s_date_buffer), template, tick_time);
-  
   text_layer_set_text(s_time_layer, s_time_buffer);
   text_layer_set_text(s_date_layer, s_date_buffer);
 }
@@ -76,42 +80,38 @@ static void main_window_load(Window *window) {
   //Fonts
   s_big_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_45));
   s_medium_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_25));
-  s_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_15));
+  s_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_20));
   
   //Bitmaps
   s_bluetooth_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BLUETOOTH);
-  s_bluetooth_connected_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BLUETOOTH_CONNECTED);
-  s_charge_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_CHARGE);
+  s_bluetooth_connected_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BLUETOOTH_CONNECTED); 
+  s_charge_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_CHARGE);// 26 px high
   s_battery_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BATTERY);
   s_battery_warning_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BATTERY_WARNING);
   
   //Create Layers
-  s_battery_image_layer = bitmap_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 5), bounds.size.w / 2, 50));
-  bitmap_layer_set_bitmap(s_battery_image_layer, s_bluetooth_bitmap);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_battery_image_layer));
-  
-  s_bluetooth_image_layer = bitmap_layer_create(GRect(bounds.size.w / 2, PBL_IF_ROUND_ELSE(10, 5), bounds.size.w, 50));
-  bitmap_layer_set_bitmap(s_bluetooth_image_layer, s_battery_bitmap);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_bluetooth_image_layer));
-  
   s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(16, 10), bounds.size.w, 50));
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
   
-  s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(75, 69), bounds.size.w, 30));
+  s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(74, 68), bounds.size.w, 30));
   layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
   
-  s_bluetooth_layer = build_text_layer(s_small_font, GRect(0, 105, bounds.size.w, 20));
-  layer_add_child(window_layer, text_layer_get_layer(s_bluetooth_layer));
+  s_bluetooth_image_layer = bitmap_layer_create(GRect(80, PBL_IF_ROUND_ELSE(110, 115), bounds.size.w / 2, 50));
+  bitmap_layer_set_bitmap(s_bluetooth_image_layer, s_bluetooth_connected_bitmap);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_bluetooth_image_layer));
   
-  s_battery_layer = build_text_layer(s_small_font, GRect(0, 125, bounds.size.w, 20));
-  layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));  
+  s_battery_layer = build_text_layer(s_small_font, GRect(65, PBL_IF_ROUND_ELSE(121, 126), 40, 20));
+  layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));
+  
+  s_battery_image_layer = bitmap_layer_create(GRect(15, PBL_IF_ROUND_ELSE(110, 115), 50, 50));
+  bitmap_layer_set_bitmap(s_battery_image_layer, s_battery_bitmap);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_battery_image_layer));
 }
 
 static void main_window_unload(Window *window) {
-  text_layer_destroy(s_temp_layer);
+//   text_layer_destroy(s_temp_layer);
   text_layer_destroy(s_time_layer);
   text_layer_destroy(s_date_layer);
-  text_layer_destroy(s_bluetooth_layer);
   text_layer_destroy(s_battery_layer);
   fonts_unload_custom_font(s_big_font);
   fonts_unload_custom_font(s_medium_font);

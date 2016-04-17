@@ -18,7 +18,7 @@
         "media": [
             {
                 "file": "fonts/SourceSansPro-Regular.ttf",
-                "name": "FONT_SOURCE_SANS_PRO_REGULAR_15",
+                "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"
@@ -99,7 +99,7 @@
             },
             {
                 "file": "fonts/SourceSansPro-Light.ttf",
-                "name": "FONT_SOURCE_SANS_PRO_LIGHT_15",
+                "name": "FONT_SOURCE_SANS_PRO_LIGHT_20",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"
