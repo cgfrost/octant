@@ -45,7 +45,7 @@
             },
             {
                 "file": "images/icon-status-battery-warning.png",
-                "name": "ICON_STATUS_WARNING",
+                "name": "ICON_STATUS_BATTERY_WARNING",
                 "targetPlatforms": [
                     "basalt",
                     "chalk"

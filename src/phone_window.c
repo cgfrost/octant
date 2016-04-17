@@ -4,9 +4,6 @@
 static Window *s_phone_window;
 static TextLayer *s_phone_layer;
 static GFont s_phone_font;
-
-//Logo
-
 static BitmapLayer *s_logo_layer;
 static GBitmap *s_logo_bitmap;
 
@@ -22,12 +19,11 @@ static void phone_window_load(Window *window) {
   
   s_phone_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_45));
 
-  // Create GBitmap
+  // Create GBitmaps
   s_logo_layer = bitmap_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 5), bounds.size.w, 50));
   s_logo_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_M_JOLLA);
   bitmap_layer_set_bitmap(s_logo_layer, s_logo_bitmap);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_logo_layer));
-  
   
   s_phone_layer = text_layer_create(GRect(0, PBL_IF_ROUND_ELSE(70, 65), bounds.size.w, 50));
   text_layer_set_background_color(s_phone_layer, GColorClear);
@@ -36,7 +32,6 @@ static void phone_window_load(Window *window) {
   text_layer_set_text_alignment(s_phone_layer, GTextAlignmentCenter);
   text_layer_set_text(s_phone_layer, "@$#£!");
   layer_add_child(window_layer, text_layer_get_layer(s_phone_layer));
-  
 }
 
 static void phone_window_unload(Window *window) {
