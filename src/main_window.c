@@ -87,8 +87,8 @@ static void main_window_load(Window *window) {
   s_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_20));
   
   //Bitmaps
-  s_bluetooth_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BLUETOOTH);
-  s_bluetooth_connected_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_STATUS_BLUETOOTH_CONNECTED); 
+  s_bluetooth_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BLUETOOTH_DISCONNECTED);
+  s_bluetooth_connected_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BLUETOOTH_CONNECTED); 
   s_battery_charging_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BATTERY_CHARGING);
   s_battery_good_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BATTERY_GOOD);
   s_battery_low_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BATTERY_LOW);
@@ -101,13 +101,13 @@ static void main_window_load(Window *window) {
   s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(74, 68), bounds.size.w, 30));
   layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
   
-  s_battery_image_layer = bitmap_layer_create(GRect(0, PBL_IF_ROUND_ELSE(115, 125), 40, 20));
+  s_battery_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(14, 0), 125, 40, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_battery_image_layer));
   
-  s_battery_layer = build_text_layer(s_small_font, GRect(43, PBL_IF_ROUND_ELSE(112, 122), 50, 20));
+  s_battery_layer = build_text_layer(s_small_font, GRect(PBL_IF_ROUND_ELSE(56, 42), 122, 50, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));
   
-  s_bluetooth_image_layer = bitmap_layer_create(GRect(90, PBL_IF_ROUND_ELSE(100, 110), 50, 50));
+  s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(125, 90), 125, 20, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_bluetooth_image_layer));
 }
 

@@ -17,6 +17,24 @@
     "resources": {
         "media": [
             {
+                "file": "images/icon-m-bluetooth-disconnected.png",
+                "name": "ICON_BLUETOOTH_DISCONNECTED",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
+                "file": "images/icon-m-bluetooth-connected.png",
+                "name": "ICON_BLUETOOTH_CONNECTED",
+                "targetPlatforms": [
+                    "basalt",
+                    "chalk"
+                ],
+                "type": "bitmap"
+            },
+            {
                 "file": "images/icon-m-battery.png",
                 "name": "ICON_BATTERY_GOOD",
                 "targetPlatforms": [
@@ -78,24 +96,6 @@
                     "chalk"
                 ],
                 "type": "font"
-            },
-            {
-                "file": "images/icon-status-bluetooth-connected.png",
-                "name": "ICON_STATUS_BLUETOOTH_CONNECTED",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
-            },
-            {
-                "file": "images/icon-status-bluetooth.png",
-                "name": "ICON_STATUS_BLUETOOTH",
-                "targetPlatforms": [
-                    "basalt",
-                    "chalk"
-                ],
-                "type": "bitmap"
             },
             {
                 "file": "images/icon-m-jolla.png",
