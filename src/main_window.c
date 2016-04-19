@@ -107,12 +107,11 @@ static void main_window_load(Window *window) {
   s_battery_layer = build_text_layer(s_small_font, GRect(PBL_IF_ROUND_ELSE(56, 42), 122, 50, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));
   
-  s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(125, 90), 125, 20, 20));
+  s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(125, 105), 125, 20, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_bluetooth_image_layer));
 }
 
 static void main_window_unload(Window *window) {
-//   text_layer_destroy(s_temp_layer);
   text_layer_destroy(s_time_layer);
   text_layer_destroy(s_date_layer);
   text_layer_destroy(s_battery_layer);
