@@ -4,24 +4,41 @@
 
 // MESSAGING
 
-enum WeatherKey {
+enum MsgKey {
   VIBRATE_ON_DISCONNECT = 0x0,  // TUPLE_INT
   DEVICE_WIFI_LEVEL = 0x1,      // TUPLE_CSTRING
   DEVICE_WIFI_NAME = 0x2,       // TUPLE_CSTRING
   DEVICE_CELL_LEVEL = 0x3,
   DEVICE_CELL_NAME = 0x4,
   DEVICE_BATTERY_NAME = 0x5,
+  JSREADY = 0x6,
 };
+
+static bool s_js_ready;
+
+bool comm_is_js_ready() {
+  return s_js_ready;
+}
+
+// Declare the dictionary's iterator
+static DictionaryIterator *out_iter;
+
+// Prepare the outbox buffer for this message
+AppMessageResult result = app_message_outbox_begin(&out_iter);
 
 // Largest expected inbox and outbox message sizes
 const uint32_t inbox_size = 54;
 const uint32_t outbox_size = 256;
 
 // Open AppMessage
-// app_message_open(inbox_size, outbox_size);
+app_message_open(inbox_size, outbox_size);
 
 static void inbox_received_callback(DictionaryIterator *iter, void *context) {
-  // A new message has been successfully received
+  Tuple *ready_tuple = dict_find(iter, 0x6);
+  if(ready_tuple) {
+    // PebbleKit JS is ready! Safe to send messages
+    s_js_ready = true;
+  }
 }
 
 static void inbox_dropped_callback(AppMessageResult reason, void *context) {

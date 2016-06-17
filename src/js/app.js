@@ -1,6 +1,7 @@
 // Listen for when the watchface is opened
 Pebble.addEventListener('ready', function(e) {
   console.log('PebbleKit JS ready!');
+  Pebble.sendAppMessage({'JSREADY': 1});
 //   for (var key in Pebble) {
 //     if (Pebble.hasOwnProperty(key)) {
 //       console.log("Pebble - Own - " + key);
