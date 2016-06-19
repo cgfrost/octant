@@ -83,7 +83,7 @@ static void main_window_load(Window *window) {
   
   //Fonts
   s_big_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_45));
-  s_medium_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_25));
+  s_medium_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_24));
   s_small_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_20));
   
   //Bitmaps
@@ -95,7 +95,7 @@ static void main_window_load(Window *window) {
   s_battery_warning_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BATTERY_WARNING);
   
   //Create Layers
-  s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(16, 10), bounds.size.w, 50));
+  s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(11, 5), bounds.size.w, 50));
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
   
   s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(74, 68), bounds.size.w, 30));

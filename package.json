@@ -5,7 +5,7 @@
     "name": "octant",
     "pebble": {
         "capabilities": [
-            "configurable"
+            ""
         ],
         "displayName": "Octant",
         "enableMultiJS": true,
@@ -77,25 +77,25 @@
                 },
                 {
                     "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
-                    "targetPlatforms": [
-                        "basalt",
-                        "chalk"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_25",
-                    "targetPlatforms": [
-                        "basalt",
-                        "chalk"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/SourceSansPro-Regular.ttf",
                     "name": "FONT_SOURCE_SANS_PRO_REGULAR_45",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/SourceSansPro-Regular.ttf",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_24",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/SourceSansPro-Regular.ttf",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
                     "targetPlatforms": [
                         "basalt",
                         "chalk"
