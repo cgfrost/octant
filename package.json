@@ -77,7 +77,16 @@
                 },
                 {
                     "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_45",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/SourceSansPro-Regular.ttf",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_15",
                     "targetPlatforms": [
                         "basalt",
                         "chalk"
@@ -95,7 +104,7 @@
                 },
                 {
                     "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_45",
                     "targetPlatforms": [
                         "basalt",
                         "chalk"
@@ -110,33 +119,6 @@
                         "chalk"
                     ],
                     "type": "bitmap"
-                },
-                {
-                    "file": "fonts/SourceSansPro-Light.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_LIGHT_20",
-                    "targetPlatforms": [
-                        "basalt",
-                        "chalk"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/SourceSansPro-Light.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_LIGHT_25",
-                    "targetPlatforms": [
-                        "basalt",
-                        "chalk"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/SourceSansPro-Light.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_LIGHT_45",
-                    "targetPlatforms": [
-                        "basalt",
-                        "chalk"
-                    ],
-                    "type": "font"
                 }
             ]
         },

@@ -17,7 +17,7 @@ static void phone_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
   
-  s_phone_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_LIGHT_45));
+  s_phone_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_45));
 
   // Create GBitmaps
   s_logo_layer = bitmap_layer_create(GRect(0, PBL_IF_ROUND_ELSE(10, 5), bounds.size.w, 80));
