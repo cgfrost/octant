@@ -104,10 +104,10 @@ static void main_window_load(Window *window) {
   s_battery_warning_bitmap = gbitmap_create_with_resource(RESOURCE_ID_ICON_BATTERY_WARNING);
   
   //Create Layers
-  s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(14, 7), bounds.size.w, 50));
+  s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(13, 6), bounds.size.w, 50));
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
   
-  s_ampm_layer = build_text_layer(s_small_font, GRect(PBL_IF_ROUND_ELSE(137, 118), PBL_IF_ROUND_ELSE(44, 37), 27, 20));
+  s_ampm_layer = build_text_layer(s_small_font, GRect(PBL_IF_ROUND_ELSE(137, 118), PBL_IF_ROUND_ELSE(43, 36), 27, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_ampm_layer));
   
   s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(74, 68), bounds.size.w, 30));

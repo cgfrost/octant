@@ -9,15 +9,7 @@
         ],
         "displayName": "Octant",
         "enableMultiJS": true,
-        "messageKeys": {
-            "DEVICE_BATTERY_LEVEL": 5,
-            "DEVICE_CELL_LEVEL": 3,
-            "DEVICE_CELL_NAME": 4,
-            "DEVICE_WIFI_LEVEL": 1,
-            "DEVICE_WIFI_NAME": 2,
-            "JSREADY": 6,
-            "VIBRATE_ON_DISCONNECT": 0
-        },
+        "messageKeys": [],
         "projectType": "native",
         "resources": {
             "media": [
@@ -132,5 +124,5 @@
             "watchface": true
         }
     },
-    "version": "1.0.0"
+    "version": "1.1.0"
 }
