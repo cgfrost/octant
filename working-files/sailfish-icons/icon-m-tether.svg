@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<g id="icon-m-tether">
+	<rect id="icon-m-tether_1_" style="opacity:0;fill:#FFFFFF;" width="64" height="64"/>
+	<g style="opacity:0.6;">
+		<rect x="46" y="40.585" style="fill:#FFFFFF;" width="2" height="5.824"/>
+	</g>
+	<g style="opacity:0.6;">
+		<path style="fill:#FFFFFF;" d="M13.939,46h-1.879V27.406c0-2.396,1.949-4.345,4.345-4.345H37v1.879H16.406
+			c-1.36,0-2.466,1.106-2.466,2.466V46z"/>
+	</g>
+	<path style="fill:#FFFFFF;" d="M49.373,52.897H10.627c-1.392,0-2.524-1.133-2.524-2.524v-1.746c0-1.392,1.132-2.524,2.524-2.524
+		h38.746c1.392,0,2.524,1.133,2.524,2.524v1.746C51.897,51.765,50.765,52.897,49.373,52.897z M10.627,47.897
+		c-0.402,0-0.729,0.327-0.729,0.729v1.746c0,0.402,0.327,0.729,0.729,0.729h38.746c0.402,0,0.729-0.327,0.729-0.729v-1.746
+		c0-0.402-0.327-0.729-0.729-0.729H10.627z"/>
+	<g>
+		<path style="fill:#FFFFFF;" d="M53.267,40.956H38.733c-1.483,0-2.689-1.206-2.689-2.689V13.733c0-1.483,1.206-2.689,2.689-2.689
+			h14.533c1.483,0,2.689,1.207,2.689,2.689v24.533C55.956,39.75,54.75,40.956,53.267,40.956z M38.733,12.956
+			c-0.429,0-0.777,0.349-0.777,0.777v24.533c0,0.429,0.349,0.777,0.777,0.777h14.533c0.429,0,0.777-0.349,0.777-0.777V13.733
+			c0-0.429-0.349-0.777-0.777-0.777H38.733z"/>
+	</g>
+</g>
+</svg>

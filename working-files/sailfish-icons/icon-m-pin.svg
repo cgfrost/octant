@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<g id="icon-m-pin">
+	<rect id="icon-m-pin_1_" style="opacity:0;fill:#FFFFFF;" width="64" height="64"/>
+	<g>
+		<path style="fill:#FFFFFF;" d="M46.104,56.031H18.29c-2.273,0-4.123-1.851-4.123-4.124V23.375c0-1.751,0.455-3.972,1.324-4.829
+			c0.558-0.55,1.985-1.988,3.173-3.197l4.78-4.865c1.385-1.41,4.019-2.514,5.995-2.514h16.666c2.273,0,4.124,1.85,4.124,4.123
+			v39.815C50.229,54.181,48.378,56.031,46.104,56.031z M29.438,10.031c-1.417,0-3.531,0.887-4.524,1.897l-4.78,4.865
+			c-1.196,1.217-2.635,2.667-3.196,3.22c-0.24,0.253-0.71,1.671-0.71,3.361v28.533c0,1.137,0.925,2.062,2.062,2.062h27.815
+			c1.137,0,2.062-0.925,2.062-2.062V12.092c0-1.137-0.925-2.062-2.062-2.062H29.438z"/>
+	</g>
+	<g style="opacity:0.5;">
+		<g>
+			<path style="fill:#FFFFFF;" d="M41.235,47.935H23.16c-1.144,0-2.074-0.93-2.074-2.073V27.786c0-1.144,0.93-2.074,2.074-2.074
+				h18.076c1.144,0,2.073,0.93,2.073,2.074v18.076C43.309,47.005,42.379,47.935,41.235,47.935z M23.309,45.712h17.777V27.935H23.309
+				V45.712z"/>
+		</g>
+		<rect x="31.086" y="26.823" style="fill:#FFFFFF;" width="2.223" height="20"/>
+		<rect x="22.197" y="35.775" style="fill:#FFFFFF;" width="20" height="2.096"/>
+	</g>
+</g>
+</svg>

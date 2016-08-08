@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<g id="icon-m-folder">
+	<g id="icon-m-folder_1_" style="opacity:0;">
+		<rect style="fill:#FFFFFF;" width="64" height="64"/>
+	</g>
+	<g style="opacity:0.4;">
+		<path style="fill:#FFFFFF;" d="M5.387,51.774c0,2.2,1.8,4,4,4H52.22c2.2,0,4-1.8,4-4V17.177c0-2.2-1.8-4-4-4H35.463
+			c-2.2,0-4.732-1.114-5.627-2.476C28.942,9.34,26.41,8.226,24.21,8.226H9.387c-2.2,0-4,1.8-4,4V51.774z"/>
+	</g>
+	<path style="fill:#FFFFFF;" d="M56.503,51.847c-0.417,2.16-2.559,3.927-4.759,3.927H8.911c-2.2,0-3.659-1.767-3.241-3.927
+		l5.649-29.249c0.417-2.16,2.559-3.927,4.759-3.927h42.833c2.2,0,3.659,1.767,3.241,3.927L56.503,51.847z"/>
+</g>
+</svg>

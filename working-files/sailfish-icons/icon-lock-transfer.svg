@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<g id="icon-lock-transfer">
+	<rect id="icon-lock-transfer_1_" style="opacity:0;fill:#FFFFFF;" width="32" height="32"/>
+	<g>
+		<g>
+			<g>
+				<path style="fill:#1FBAA3;" d="M21.79,18.521l-4.613,0c-0.655,0-0.89,0.58-0.522,1.126l5.657,8.448
+					c0.368,0.546,0.971,0.579,1.339,0.033l5.655-8.498c0.368-0.546,0.134-1.109-0.522-1.109l-4.612,0L21.79,18.521z"/>
+				<rect x="20.981" y="7.572" style="fill:#1FBAA3;" width="4" height="14.996"/>
+			</g>
+		</g>
+		<g>
+			<g>
+				<path style="fill:#FFFFFF;" d="M10.173,16.028l4.613,0c0.655,0,0.89-0.58,0.522-1.126L9.651,6.455
+					C9.282,5.909,8.68,5.876,8.311,6.421l-5.655,8.498c-0.368,0.546-0.134,1.109,0.522,1.109l4.612,0L10.173,16.028z"/>
+				<path style="fill:#FFFFFF;" d="M8.981,27.521c-1.104,0-2-0.896-2-2V10.524c0-1.104,0.896-2,2-2s2,0.896,2,2v14.997
+					C10.981,26.625,10.085,27.521,8.981,27.521z"/>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

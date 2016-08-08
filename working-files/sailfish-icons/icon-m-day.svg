@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="64px" height="64px" viewBox="0 0 64 64" style="enable-background:new 0 0 64 64;" xml:space="preserve">
+<g id="icon-m-day">
+	<rect id="icon-m-day_1_" style="opacity:0;fill:#FFFFFF;" width="64" height="64"/>
+	<g>
+		<rect x="31" y="50.495" style="opacity:0.6;fill:#FFFFFF;" width="2" height="8.18"/>
+		<rect x="31" y="5.325" style="opacity:0.6;fill:#FFFFFF;" width="2" height="8.174"/>
+		
+			<rect x="41.185" y="49.272" transform="matrix(0.5879 0.809 -0.809 0.5879 59.3276 -15.9072)" style="opacity:0.6;fill:#FFFFFF;" width="8.18" height="1.999"/>
+		
+			<rect x="14.636" y="12.726" transform="matrix(0.5878 0.809 -0.809 0.5878 18.8219 -9.4895)" style="opacity:0.6;fill:#FFFFFF;" width="8.175" height="2"/>
+		
+			<rect x="49.391" y="37.98" transform="matrix(0.9511 0.309 -0.309 0.9511 14.6629 -14.6185)" style="opacity:0.6;fill:#FFFFFF;" width="8.179" height="2"/>
+		
+			<rect x="6.431" y="24.02" transform="matrix(0.951 0.3091 -0.3091 0.951 8.2474 -2.0258)" style="opacity:0.6;fill:#FFFFFF;" width="8.175" height="2"/>
+		
+			<rect x="52.48" y="20.931" transform="matrix(0.3086 0.9512 -0.9512 0.3086 60.7756 -33.5704)" style="opacity:0.6;fill:#FFFFFF;" width="2" height="8.179"/>
+		
+			<rect x="9.518" y="34.893" transform="matrix(0.309 0.951 -0.951 0.309 44.3394 16.9303)" style="opacity:0.6;fill:#FFFFFF;" width="2" height="8.175"/>
+		
+			<rect x="44.276" y="9.638" transform="matrix(0.8088 0.5881 -0.5881 0.8088 16.7286 -23.9999)" style="opacity:0.6;fill:#FFFFFF;" width="1.999" height="8.18"/>
+		
+			<rect x="17.723" y="46.186" transform="matrix(0.809 0.5878 -0.5878 0.809 33.1283 -1.4033)" style="opacity:0.6;fill:#FFFFFF;" width="2" height="8.175"/>
+		<path style="fill:#FFFFFF;" d="M32,51.5c-10.752,0-19.5-8.748-19.5-19.5c0-10.752,8.748-19.5,19.5-19.5
+			c10.752,0,19.5,8.748,19.5,19.5C51.5,42.752,42.752,51.5,32,51.5z M32,14.5c-9.649,0-17.5,7.851-17.5,17.5S22.351,49.5,32,49.5
+			S49.5,41.649,49.5,32S41.649,14.5,32,14.5z"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 17.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="32px" height="32px" viewBox="0 0 32 32" style="enable-background:new 0 0 32 32;" xml:space="preserve">
+<g id="icon-lock-calendar">
+	<rect id="icon-lock-calendar_1_" style="opacity:0;fill:#FFFFFF;" width="32" height="32"/>
+	<g>
+		<path style="fill:#FFFFFF;" d="M32,30.667C32,31.4,31.4,32,30.667,32H1.333C0.6,32,0,31.4,0,30.667V1.333C0,0.6,0.6,0,1.333,0
+			h29.333C31.4,0,32,0.6,32,1.333V30.667z"/>
+		<g>
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="0" y1="2.8718" x2="32.0002" y2="2.8718">
+				<stop  offset="0" style="stop-color:#FF4747"/>
+				<stop  offset="1" style="stop-color:#FF9666"/>
+			</linearGradient>
+			<path style="fill:url(#SVGID_1_);" d="M0,5.744V1.781C0,0.427,0.427,0,1.781,0h28.439C31.573,0,32,0.427,32,1.781v3.963H0z"/>
+		</g>
+		<rect x="4.103" y="9.846" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="4.103" y="16.41" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="4.103" y="22.974" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="10.667" y="9.846" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="10.667" y="16.41" style="opacity:0.8;fill:#661D87;" width="4.103" height="4.103"/>
+		<rect x="10.667" y="22.974" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="17.231" y="9.846" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="17.231" y="16.41" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="17.231" y="22.974" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="23.795" y="9.846" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+		<rect x="23.795" y="16.41" style="fill:#FFA6A3;" width="4.103" height="4.103"/>
+	</g>
+</g>
+</svg>
