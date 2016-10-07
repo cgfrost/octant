@@ -7,7 +7,6 @@ static GFont s_phone_font;
 static BitmapLayer *s_logo_layer;
 static GBitmap *s_logo_bitmap;
 
-
 // Setup Phone Window - 
 
   //Chalk, round - 180 x 180
