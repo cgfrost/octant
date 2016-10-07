@@ -2,10 +2,12 @@
 #include "main_window.h"
 
 static Window *s_main_window;
-static TextLayer *s_temp_layer, *s_time_layer, *s_ampm_layer, *s_date_layer, *s_battery_layer;
+static TextLayer *s_temp_layer, *s_time_layer, *s_ampm_layer, *s_date_layer, *s_battery_layer, *s_activity_layer;
 static BitmapLayer *s_battery_image_layer, *s_bluetooth_image_layer;
 static GFont s_big_font, s_medium_font, s_smedium_font, s_small_font;
 static GBitmap *s_bluetooth_bitmap, *s_bluetooth_connected_bitmap, *s_battery_charging_bitmap, *s_battery_good_bitmap, *s_battery_low_bitmap, *s_battery_warning_bitmap;
+
+const HealthMetric stepCountMetric = HealthMetricStepCount;
 
 // Handlers
 
@@ -38,6 +40,21 @@ static void handle_bluetooth(bool connected) {
   }
 }
 
+static void update_steps() {
+  time_t start = time_start_of_today();
+  time_t end = time(NULL);
+  HealthServiceAccessibilityMask mask = health_service_metric_accessible(stepCountMetric, start, end);
+  bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
+  
+  static char steps_text[] = "-----";
+  if(any_data_available) {
+    int steps = health_service_sum_today(stepCountMetric);
+    snprintf(steps_text, sizeof steps_text, "%d", steps);
+  }
+    
+  text_layer_set_text(s_activity_layer, steps_text);
+}
+
 static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
   static char s_time_buffer[6];
   strftime(s_time_buffer, sizeof(s_time_buffer), clock_is_24h_style() ? "%H:%M" : "%I:%M", tick_time);
@@ -67,6 +84,8 @@ static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
   text_layer_set_text(s_time_layer, s_time_buffer);
   text_layer_set_text(s_ampm_layer, s_ampm_buffer);
   text_layer_set_text(s_date_layer, s_date_buffer);
+  
+  update_steps();
 }
 
 // Helper
@@ -86,8 +105,10 @@ static void main_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(window);
   GRect bounds = layer_get_bounds(window_layer);
   
-  //Chalk, round - 180 x 180
-  //Basalt, rectangular - 144 x 168
+  // Chalk, Pebble Time Round                - 180 x 180
+  // Basalt, Pebble Time & Pebble Time Steel - 144 x 168
+  // Diorite, Pebble 2                       - 144 x 168
+  // Emery, Pebble Time 2                    - 200 x 228
   
   //Fonts
   s_big_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_SOURCE_SANS_PRO_REGULAR_45));
@@ -113,19 +134,23 @@ static void main_window_load(Window *window) {
   s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(74, 68), bounds.size.w, 30));
   layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
   
-  s_battery_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(13, 0), 125, 40, 20));
+  s_activity_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(103, 100), bounds.size.w, 30));
+  layer_add_child(window_layer, text_layer_get_layer(s_activity_layer));
+  
+  s_battery_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(16, 0), 138, 40, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_battery_image_layer));
   
-  s_battery_layer = build_text_layer(s_smedium_font, GRect(PBL_IF_ROUND_ELSE(55, 42), 122, 50, 20));
+  s_battery_layer = build_text_layer(s_smedium_font, GRect(PBL_IF_ROUND_ELSE(58, 42), 135, 50, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));
   
-  s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(126, 104), 125, 20, 20));
+  s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(123, 104), 138, 20, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_bluetooth_image_layer));
 }
 
 static void main_window_unload(Window *window) {
   text_layer_destroy(s_time_layer);
   text_layer_destroy(s_date_layer);
+  text_layer_destroy(s_activity_layer);
   text_layer_destroy(s_battery_layer);
   fonts_unload_custom_font(s_big_font);
   fonts_unload_custom_font(s_medium_font);
