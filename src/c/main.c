@@ -6,6 +6,7 @@
 
 static bool on_phone_screen = false;
 static bool show_steps = false;
+static bool show_tap_screen = false;
 
 static void handle_timer(void* data) {
   window_stack_pop(true);
@@ -24,7 +25,14 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
   
   Tuple *show_steps_t = dict_find(iter, MESSAGE_KEY_SHOW_STEPS);
   if(show_steps_t) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "steps: %d", (int) show_steps_t->value->int32);
     show_steps = show_steps_t->value->int32 == 1;
+  }
+  
+  Tuple *show_tap_screen_t = dict_find(iter, MESSAGE_KEY_SHOW_TAP_SCREEN);
+  if(show_tap_screen_t) {
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen: %d", (int) show_tap_screen_t->value->int32);
+    show_tap_screen = show_tap_screen_t->value->int32 == 1;
   }
 
 }
