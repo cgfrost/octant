@@ -7,6 +7,7 @@ static BitmapLayer *s_battery_image_layer, *s_bluetooth_image_layer;
 static GFont s_big_font, s_medium_font, s_smedium_font, s_small_font;
 static GBitmap *s_bluetooth_bitmap, *s_bluetooth_connected_bitmap, *s_battery_charging_bitmap, *s_battery_good_bitmap, *s_battery_low_bitmap, *s_battery_warning_bitmap;
 
+static bool show_steps = false;
 const HealthMetric stepCountMetric = HealthMetricStepCount;
 
 // Handlers
@@ -47,7 +48,7 @@ static void update_steps() {
   bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
   
   static char steps_text[] = "-----";
-  if(any_data_available) {
+  if(show_steps && any_data_available) {
     int steps = health_service_sum_today(stepCountMetric);
     snprintf(steps_text, sizeof steps_text, "%d", steps);
   }
@@ -165,13 +166,15 @@ static void main_window_unload(Window *window) {
   bitmap_layer_destroy(s_bluetooth_image_layer);
 }
 
-void main_window_init() {
-    s_main_window = window_create();
+void main_window_init(bool show_steps_config) {
+  show_steps = show_steps_config;
+  
+  s_main_window = window_create();
 
-    window_set_window_handlers(s_main_window, (WindowHandlers) {
-      .load = main_window_load,
-      .unload = main_window_unload
-    });
+  window_set_window_handlers(s_main_window, (WindowHandlers) {
+    .load = main_window_load,
+    .unload = main_window_unload
+  });
   
   window_set_background_color(s_main_window, GColorBlack);
   window_stack_push(s_main_window, true);

@@ -1,6 +1,8 @@
 {
     "author": "chrisfrost.com",
-    "dependencies": {},
+    "dependencies": {
+        "pebble-clay": "^1.0.2"
+    },
     "keywords": [],
     "name": "octant",
     "pebble": {
@@ -9,7 +11,10 @@
         ],
         "displayName": "Octant",
         "enableMultiJS": true,
-        "messageKeys": [],
+        "messageKeys": [
+            "SHOW_STEPS",
+            "SHOW_TAP_SCREEN"
+        ],
         "projectType": "native",
         "resources": {
             "media": [
