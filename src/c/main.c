@@ -27,12 +27,14 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
   if(show_steps_t) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "steps: %d", (int) show_steps_t->value->int32);
     show_steps = show_steps_t->value->int32 == 1;
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "steps asignment: %d", (int) show_steps);
   }
   
   Tuple *show_tap_screen_t = dict_find(iter, MESSAGE_KEY_SHOW_TAP_SCREEN);
   if(show_tap_screen_t) {
     APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen: %d", (int) show_tap_screen_t->value->int32);
     show_tap_screen = show_tap_screen_t->value->int32 == 1;
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen assignment: %d", (int) show_tap_screen);
   }
 
 }
