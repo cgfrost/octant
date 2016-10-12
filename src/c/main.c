@@ -32,9 +32,12 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
   
   Tuple *show_tap_screen_t = dict_find(iter, MESSAGE_KEY_SHOW_TAP_SCREEN);
   if(show_tap_screen_t) {
+    accel_tap_service_subscribe(handle_tap);
     APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen: %d", (int) show_tap_screen_t->value->int32);
     show_tap_screen = show_tap_screen_t->value->int32 == 1;
     APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen assignment: %d", (int) show_tap_screen);
+  } else {
+    accel_tap_service_unsubscribe();
   }
 
 }
