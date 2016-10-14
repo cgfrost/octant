@@ -36,8 +36,8 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
   Tuple *show_steps_t = dict_find(iter, MESSAGE_KEY_SHOW_STEPS);
   if(show_steps_t) {
     settings.show_steps = show_steps_t->value->int32 == 1;
-    set_display_show_steps(settings.show_steps);
     APP_LOG(APP_LOG_LEVEL_DEBUG, "steps set to: %d", (int) settings.show_steps);
+    set_display_show_steps(settings.show_steps);
   }
   
   Tuple *show_tap_screen_t = dict_find(iter, MESSAGE_KEY_SHOW_TAP_SCREEN);
@@ -48,7 +48,7 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
     } else{
       accel_tap_service_unsubscribe();
     }
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen set to: %d", (int) settings.show_tap_screen);
+//     APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen set to: %d", (int) settings.show_tap_screen);
   }
   
   // Save the new settings to persistent storage
@@ -59,12 +59,12 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
 
 static void init() {
   prv_load_settings();
-  main_window_init();
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Launch steps: %d", (int) settings.show_steps);
+//   APP_LOG(APP_LOG_LEVEL_DEBUG, "Launch tap screen: %d", (int) settings.show_tap_screen);
+  
+  main_window_init(settings.show_steps);
   phone_window_init();
   
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Launch steps: %d", (int) settings.show_steps);
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Launch tap screen: %d", (int) settings.show_tap_screen);
-  set_display_show_steps(settings.show_steps);
   if(settings.show_tap_screen) {
     accel_tap_service_subscribe(handle_tap);
   } 

@@ -42,17 +42,20 @@ static void handle_bluetooth(bool connected) {
 }
 
 static void update_steps() {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "updating display steps boolean: %d", (int) show_steps);
+  
   time_t start = time_start_of_today();
   time_t end = time(NULL);
   HealthServiceAccessibilityMask mask = health_service_metric_accessible(stepCountMetric, start, end);
   bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
   
   static char steps_text[] = "-----";
-  if(show_steps && any_data_available) {
+  if(show_steps == 1 && any_data_available) {
     int steps = health_service_sum_today(stepCountMetric);
     snprintf(steps_text, sizeof steps_text, "%d", steps);
   }
-    
+  
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "updating display steps to text: %s", steps_text);
   text_layer_set_text(s_activity_layer, steps_text);
 }
 
@@ -167,12 +170,12 @@ static void main_window_unload(Window *window) {
 }
 
 void set_display_show_steps(bool show_steps_config) {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "updating display steps to: %d", (int) show_steps_config);
   show_steps = show_steps_config;
   update_steps();
 }
 
-void main_window_init() {  
+void main_window_init(bool show_steps_config) {
+  show_steps = show_steps_config;
   s_main_window = window_create();
 
   window_set_window_handlers(s_main_window, (WindowHandlers) {
