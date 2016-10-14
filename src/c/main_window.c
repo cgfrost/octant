@@ -166,9 +166,13 @@ static void main_window_unload(Window *window) {
   bitmap_layer_destroy(s_bluetooth_image_layer);
 }
 
-void main_window_init(bool show_steps_config) {
+void set_display_show_steps(bool show_steps_config) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "updating display steps to: %d", (int) show_steps_config);
   show_steps = show_steps_config;
-  
+  update_steps();
+}
+
+void main_window_init() {  
   s_main_window = window_create();
 
   window_set_window_handlers(s_main_window, (WindowHandlers) {
