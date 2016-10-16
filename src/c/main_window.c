@@ -50,7 +50,13 @@ static void update_steps() {
   bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
   
   static char steps_text[] = "-----";
-  if(show_steps == 1 && any_data_available) {
+  if(show_steps){
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "SHOW STEPS IS TRUE");
+  }
+  if(any_data_available){
+    APP_LOG(APP_LOG_LEVEL_DEBUG, "ANY DATA IS TRUE");
+  }
+  if(show_steps == 1 && any_data_available) { // WTF
     int steps = health_service_sum_today(stepCountMetric);
     snprintf(steps_text, sizeof steps_text, "%d", steps);
   }
