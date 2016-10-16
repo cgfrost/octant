@@ -8,12 +8,14 @@ static GFont s_big_font, s_medium_font, s_smedium_font, s_small_font;
 static GBitmap *s_bluetooth_bitmap, *s_bluetooth_connected_bitmap, *s_battery_charging_bitmap, *s_battery_good_bitmap, *s_battery_low_bitmap, *s_battery_warning_bitmap;
 
 static bool show_steps = false;
+static char steps_text[] = "-----";
+static char battery_text[] = "100% charged";
+
 const HealthMetric stepCountMetric = HealthMetricStepCount;
 
 // Handlers
 
 static void handle_battery(BatteryChargeState charge_state) {
-  static char battery_text[] = "100% charged";
 
   if (charge_state.is_charging) {
     snprintf(battery_text, sizeof(battery_text), "----");
@@ -49,19 +51,13 @@ static void update_steps() {
   HealthServiceAccessibilityMask mask = health_service_metric_accessible(stepCountMetric, start, end);
   bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
   
-  static char steps_text[] = "-----";
-  if(show_steps){
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "SHOW STEPS IS TRUE");
-  }
-  if(any_data_available){
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "ANY DATA IS TRUE");
-  }
   if(show_steps == 1 && any_data_available) { // WTF
     int steps = health_service_sum_today(stepCountMetric);
-    snprintf(steps_text, sizeof steps_text, "%d", steps);
+    snprintf(steps_text, sizeof(steps_text), "%d", steps);
+  } else {
+    snprintf(steps_text, sizeof(steps_text), "-----");
   }
   
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "updating display steps to text: %s", steps_text);
   text_layer_set_text(s_activity_layer, steps_text);
 }
 

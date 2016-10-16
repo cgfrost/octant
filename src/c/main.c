@@ -25,7 +25,7 @@ ClaySettings settings;
 
 static void prv_load_settings() {
   // Load the default settings
-  settings.show_tap_screen = true;
+  settings.show_tap_screen = false;
   settings.show_steps  = true;
   // Read settings from persistent storage, if they exist
   persist_read_data(SETTINGS_KEY, &settings, sizeof(settings));
@@ -48,7 +48,6 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
     } else{
       accel_tap_service_unsubscribe();
     }
-//     APP_LOG(APP_LOG_LEVEL_DEBUG, "tap screen set to: %d", (int) settings.show_tap_screen);
   }
   
   // Save the new settings to persistent storage
@@ -59,8 +58,6 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
 
 static void init() {
   prv_load_settings();
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Launch steps: %d", (int) settings.show_steps);
-//   APP_LOG(APP_LOG_LEVEL_DEBUG, "Launch tap screen: %d", (int) settings.show_tap_screen);
   
   main_window_init(settings.show_steps);
   phone_window_init();
@@ -69,9 +66,9 @@ static void init() {
     accel_tap_service_subscribe(handle_tap);
   } 
     
-  on_phone_screen = true;
-  phone_window_push();
-  app_timer_register(3500, handle_timer, NULL);
+//   on_phone_screen = true;
+//   phone_window_push();
+//   app_timer_register(3500, handle_timer, NULL);
   
   // Open AppMessage connection
   app_message_register_inbox_received(prv_inbox_received_handler);
