@@ -36,7 +36,6 @@ static void prv_inbox_received_handler(DictionaryIterator *iter, void *context) 
   Tuple *show_steps_t = dict_find(iter, MESSAGE_KEY_SHOW_STEPS);
   if(show_steps_t) {
     settings.show_steps = show_steps_t->value->int32 == 1;
-    APP_LOG(APP_LOG_LEVEL_DEBUG, "steps set to: %d", (int) settings.show_steps);
     set_display_show_steps(settings.show_steps);
   }
   

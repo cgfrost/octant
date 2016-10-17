@@ -44,21 +44,21 @@ static void handle_bluetooth(bool connected) {
 }
 
 static void update_steps() {
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "updating display steps boolean: %d", (int) show_steps);
+  if(show_steps){
+    time_t start = time_start_of_today();
+    time_t end = time(NULL);
+    HealthServiceAccessibilityMask mask = health_service_metric_accessible(stepCountMetric, start, end);
+    bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
   
-  time_t start = time_start_of_today();
-  time_t end = time(NULL);
-  HealthServiceAccessibilityMask mask = health_service_metric_accessible(stepCountMetric, start, end);
-  bool any_data_available = mask & HealthServiceAccessibilityMaskAvailable;
+    if(any_data_available) {
+      int steps = health_service_sum_today(stepCountMetric);
+      snprintf(steps_text, sizeof(steps_text), "%d", steps);
+    } else {
+      snprintf(steps_text, sizeof(steps_text), "-----");
+    }
   
-  if(show_steps == 1 && any_data_available) { // WTF
-    int steps = health_service_sum_today(stepCountMetric);
-    snprintf(steps_text, sizeof(steps_text), "%d", steps);
-  } else {
-    snprintf(steps_text, sizeof(steps_text), "-----");
+    text_layer_set_text(s_activity_layer, steps_text);
   }
-  
-  text_layer_set_text(s_activity_layer, steps_text);
 }
 
 static void handle_tick(struct tm *tick_time, TimeUnits units_changed) {
@@ -132,24 +132,27 @@ static void main_window_load(Window *window) {
   
   //Create Layers
   s_time_layer = build_text_layer(s_big_font, GRect(0, PBL_IF_ROUND_ELSE(13, 6), bounds.size.w, 50));
-  layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
-  
   s_ampm_layer = build_text_layer(s_small_font, GRect(PBL_IF_ROUND_ELSE(137, 118), PBL_IF_ROUND_ELSE(43, 36), 27, 20));
-  layer_add_child(window_layer, text_layer_get_layer(s_ampm_layer));
-  
   s_date_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(74, 68), bounds.size.w, 30));
-  layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
-  
   s_activity_layer = build_text_layer(s_medium_font, GRect(0, PBL_IF_ROUND_ELSE(103, 100), bounds.size.w, 30));
+  
+  if(show_steps){
+    s_battery_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(16, 0), 138, 40, 20));
+    s_battery_layer = build_text_layer(s_smedium_font, GRect(PBL_IF_ROUND_ELSE(58, 42), 135, 50, 20));
+    s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(123, 104), 138, 20, 20));
+  } else {
+    s_battery_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(13, 0), 125, 40, 20));
+    s_battery_layer = build_text_layer(s_smedium_font, GRect(PBL_IF_ROUND_ELSE(55, 42), 122, 50, 20));
+    s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(126, 104), 125, 20, 20));
+    layer_set_hidden((Layer *) s_activity_layer, true);
+  }
+  
+  layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
+  layer_add_child(window_layer, text_layer_get_layer(s_ampm_layer));
+  layer_add_child(window_layer, text_layer_get_layer(s_date_layer));
   layer_add_child(window_layer, text_layer_get_layer(s_activity_layer));
-  
-  s_battery_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(16, 0), 138, 40, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_battery_image_layer));
-  
-  s_battery_layer = build_text_layer(s_smedium_font, GRect(PBL_IF_ROUND_ELSE(58, 42), 135, 50, 20));
   layer_add_child(window_layer, text_layer_get_layer(s_battery_layer));
-  
-  s_bluetooth_image_layer = bitmap_layer_create(GRect(PBL_IF_ROUND_ELSE(123, 104), 138, 20, 20));
   layer_add_child(window_layer, bitmap_layer_get_layer(s_bluetooth_image_layer));
 }
 
@@ -173,7 +176,18 @@ static void main_window_unload(Window *window) {
 
 void set_display_show_steps(bool show_steps_config) {
   show_steps = show_steps_config;
-  update_steps();
+  if(show_steps){
+    layer_set_frame((Layer *) s_battery_image_layer, GRect(PBL_IF_ROUND_ELSE(16, 0), 138, 40, 20));
+    layer_set_frame((Layer *) s_battery_layer, GRect(PBL_IF_ROUND_ELSE(58, 42), 135, 50, 20));
+    layer_set_frame((Layer *) s_bluetooth_image_layer, GRect(PBL_IF_ROUND_ELSE(123, 104), 138, 20, 20));
+    layer_set_hidden((Layer *) s_activity_layer, false);
+    update_steps();
+  } else {
+    layer_set_frame((Layer *) s_battery_image_layer, GRect(PBL_IF_ROUND_ELSE(13, 0), 125, 40, 20));
+    layer_set_frame((Layer *) s_battery_layer, GRect(PBL_IF_ROUND_ELSE(55, 42), 122, 50, 20));
+    layer_set_frame((Layer *) s_bluetooth_image_layer, GRect(PBL_IF_ROUND_ELSE(126, 104), 125, 20, 20));
+    layer_set_hidden((Layer *) s_activity_layer, true);
+  }
 }
 
 void main_window_init(bool show_steps_config) {
