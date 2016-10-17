@@ -91,17 +91,7 @@
                 },
                 {
                     "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
-                    "targetPlatforms": [
-                        "basalt",
-                        "chalk",
-                        "diorite"
-                    ],
-                    "type": "font"
-                },
-                {
-                    "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_15",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_45",
                     "targetPlatforms": [
                         "basalt",
                         "chalk",
@@ -121,7 +111,17 @@
                 },
                 {
                     "file": "fonts/SourceSansPro-Regular.ttf",
-                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_45",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_15",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk",
+                        "diorite"
+                    ],
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/SourceSansPro-Regular.ttf",
+                    "name": "FONT_SOURCE_SANS_PRO_REGULAR_20",
                     "targetPlatforms": [
                         "basalt",
                         "chalk",
@@ -142,5 +142,5 @@
             "watchface": true
         }
     },
-    "version": "1.4.0"
+    "version": "1.5.0"
 }
